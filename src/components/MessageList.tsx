@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState } from "react";
+import api from "../api";
 
 interface Message {
   _id: string;
@@ -11,14 +11,14 @@ const MessageList: React.FC = () => {
   const [showMessages, setShowMessages] = useState<boolean>(false);
 
   const fetchMessages = async () => {
-    const res = await axios.get("/messages");
+    const res = await api.get("/messages");
     setMessages(res.data);
     setShowMessages(true);
   };
 
   return (
     <div>
-      <button onClick={fetchMessages}>Retrieve messages from database</button>
+      <button onClick={fetchMessages}>Show Messages</button>
       {showMessages && (
         <div>
           {messages.map((message) => (

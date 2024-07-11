@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import api from "../api";
 
 const MessageForm: React.FC = () => {
   const [content, setContent] = useState("");
@@ -7,7 +7,7 @@ const MessageForm: React.FC = () => {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (content.trim()) {
-      await axios.post("/messages", { content });
+      await api.post("/messages", { content });
       setContent("");
     }
   };
